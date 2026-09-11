@@ -62,10 +62,9 @@ public class tyris_controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Contacto1");
         if (other.CompareTag ("Rival"))
         {
-            Debug.Log("Contacto");
+            //Debug.Log("Contacto");
             tyrisAnimator.SetTrigger("enemyClose");
         }   
     }

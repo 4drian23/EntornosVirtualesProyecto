@@ -774,6 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1db5fd157ce11408db11034d4cd1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  giliusAnimator: {fileID: 2086789775}
 --- !u!61 &2086789774
 BoxCollider2D:
   m_ObjectHideFlags: 0

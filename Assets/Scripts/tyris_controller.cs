@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class tyris_controller : MonoBehaviour
@@ -8,7 +9,7 @@ public class tyris_controller : MonoBehaviour
     [SerializeField] float distanciaMinimaAlObjeto = 0.1f; //La distancia se mide en metros no en pixeles
 
     [Tooltip("Velocidad de Tyris")]
-    [SerializeField] float velocidadDeMov = 1;
+    [SerializeField] float velocidadDeMov = 0;
 
     [Tooltip("Referencia a Guilius")]
     [SerializeField] GameObject guilius;
@@ -29,6 +30,7 @@ public class tyris_controller : MonoBehaviour
     {
         TargetEnemy();
         ReproducirIdle();
+
     }
 
     void ReproducirIdle()
@@ -47,10 +49,26 @@ public class tyris_controller : MonoBehaviour
 
             if (distancia.magnitude > distanciaMinimaAlObjeto)
             {
-                Debug.Log($"If ejecutado");
-
+                //Debug.Log($"If ejecutado");
+                velocidadDeMov = 1;
                 transform.position += distancia.normalized * velocidadDeMov * Time.deltaTime;
-            } 
+            }
+            else
+            {
+                velocidadDeMov = 0;
+            }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Contacto1");
+        if (other.CompareTag ("Rival"))
+        {
+            Debug.Log("Contacto");
+            tyrisAnimator.SetTrigger("enemyClose");
+        }   
+    }
+    
+
 }

@@ -9,7 +9,7 @@ public class Gilus_Controler : MonoBehaviour
     {
         if (other.CompareTag ("Player"))
         {
-            Debug.Log("Entro Jugador");
+            Debug.Log("Guilius entro en contacto con Tyris");
             giliusAnimator.SetTrigger("defeat");
         }   
     }

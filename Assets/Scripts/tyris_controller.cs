@@ -18,19 +18,11 @@ public class tyris_controller : MonoBehaviour
     [SerializeField] Animator tyrisAnimator;
 
 
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         TargetEnemy();
         ReproducirIdle();
-
     }
 
     void ReproducirIdle()
@@ -64,7 +56,7 @@ public class tyris_controller : MonoBehaviour
     {
         if (other.CompareTag ("Rival"))
         {
-            //Debug.Log("Contacto");
+            Debug.Log("Tyris entro en contacto con Gilius");
             tyrisAnimator.SetTrigger("enemyClose");
         }   
     }

@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Gilus_Controler : MonoBehaviour
 {
-     [Tooltip("Animator")]
+    [Tooltip("RigidBody")]
+    [SerializeField] Rigidbody2D rb;
+
+    [Tooltip("Animator")]
     [SerializeField] Animator giliusAnimator;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -13,5 +16,11 @@ public class Gilus_Controler : MonoBehaviour
             giliusAnimator.SetTrigger("defeat");
         }   
     }
+
+
+    //void ResibirEmpuje( Vector3 dirYFue)
+   // {
+    //    rb.AddForce(dirYFue, ForceMode2D.Impulse);
+    //}
 
 }

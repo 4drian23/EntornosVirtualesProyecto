@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class tyris_controller : MonoBehaviour
+public class Tyris_controller : MonoBehaviour
 {
     [Header("Configuracion de Ineracciones de Tyris")]
     [Tooltip("Distancia a la que persigue")]
@@ -11,8 +11,8 @@ public class tyris_controller : MonoBehaviour
     [Tooltip("Velocidad de Tyris")]
     [SerializeField] float velocidadDeMov = 0;
 
-    [Tooltip("Referencia a Guilius")]
-    [SerializeField] GameObject guilius;
+    [Tooltip("Referencia a Gilius")]
+    [SerializeField] GameObject gilius;
     
     [Tooltip("Animator")]
     [SerializeField] Animator tyrisAnimator;
@@ -32,11 +32,12 @@ public class tyris_controller : MonoBehaviour
 
     void TargetEnemy()
     {
-        if (guilius != null && guilius.activeInHierarchy) // Tenemos que revisar que el objeto este activo y no sea nulo.
+        if (gilius != null && gilius.activeInHierarchy && gilius.GetComponent<Gilius_Controler>().GiveState() == false) // Tenemos que revisar que el objeto este activo y no sea nulo.
         {
-            var distancia = guilius.transform.position - transform.position; // Calcular vector
+            var distancia = gilius.transform.position - transform.position; // Calcular vector
             //var distanciaUnity = Vector3.Distance(guilius.transform.position, transform.position); 
 
+            
             //Debug.Log($"Distancia: {distancia}");
 
             if (distancia.magnitude > distanciaMinimaAlObjeto)
@@ -52,12 +53,13 @@ public class tyris_controller : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag ("Rival"))
         {
             Debug.Log("Tyris entro en contacto con Gilius");
             tyrisAnimator.SetTrigger("enemyClose");
+            velocidadDeMov = 0;
         }   
     }
     

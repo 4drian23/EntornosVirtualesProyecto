@@ -13,15 +13,36 @@ public class Gilius_Controler : MonoBehaviour
     [Tooltip("Otros")]
     [SerializeField] float PushStr = 0f;
 
+    private GameObject tyris;
+    private bool finish;
+
     bool IsDefeated = false;
+
+    void Update()
+    {
+        if (tyris != null)
+        {
+            Debug.Log($"confirmar estado boleano: {tyris.GetComponent<Tyris_controller>().terminoElAtaque()}");
+            if (tyris.GetComponent<Tyris_controller>().terminoElAtaque() && !finish)
+            {
+                Debug.Log("Hola funciona");
+                PushDirection(tyris.GetComponent<Collider>());
+                DefeatAction(); 
+            }
+        }
+        
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag ("Player"))
         {
             Debug.Log("Gilius entro en contacto con Tyris");
-            PushDirection(other);
-            DefeatAction();
+
+            tyris = other.gameObject;
+
+            Debug.Log($"confirmar valor: {tyris}");
+           
         }   
     }
 
@@ -38,6 +59,8 @@ public class Gilius_Controler : MonoBehaviour
         rb.AddForce(dir * PushStr, ForceMode.Impulse); // Se aplica fuerza de empuje
 
         Debug.Log("Fue empujado");
+
+        finish = true;
     }
 
     public bool GiveState()

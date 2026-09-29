@@ -16,7 +16,8 @@ public class Tyris_controller : MonoBehaviour
     
     [Tooltip("Animator")]
     [SerializeField] Animator tyrisAnimator;
-
+    
+    private bool endAttack;
 
     // Update is called once per frame
     void Update()
@@ -63,5 +64,14 @@ public class Tyris_controller : MonoBehaviour
         }   
     }
     
+    void setendAttack()
+    {
+        endAttack = true;
+        Debug.Log("variable seteada");
+    }
+    public bool terminoElAtaque()
+    {
+        return endAttack;
+    }
 
 }

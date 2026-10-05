@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="giliusthunderhead-goldenaxe" size="0.070000 0.065870" />
+    <ImageTarget name="tyris_flare_for_golden_axe" size="0.070000 0.121739" />
+  </Tracking>
+</QCARConfig>

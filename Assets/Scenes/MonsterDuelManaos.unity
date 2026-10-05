@@ -277,13 +277,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242052532}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29226854, y: -0, z: -0, w: 0.9563363}
-  m_LocalPosition: {x: 0, y: 2.064, z: -2.36}
+  m_LocalRotation: {x: 0.18581447, y: -0, z: -0, w: 0.9825849}
+  m_LocalPosition: {x: -0.067, y: 0.145, z: -0.244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 33.988, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.417, y: 0, z: 0}
 --- !u!1 &1141781379
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 1844395211}
   - component: {fileID: 1844395210}
   - component: {fileID: 1844395209}
-  - component: {fileID: 1844395208}
+  - component: {fileID: 1844395212}
   m_Layer: 0
   m_Name: MonsterBlue
   m_TagString: Untagged
@@ -430,25 +430,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1844395208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844395207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1844395210}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 3deespadas
-  mDatasetName: Vuforia/BarajaEspanola.xml
-  mCastedBehaviour: {fileID: 1844395210}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1844395209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,18 +513,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: 3deespadas
+  mTrackableName: tyris_flare_for_golden_axe
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/BarajaEspanola.xml
-  mAspectRatio: 1.541063
+  mDataSetPath: Vuforia/Entornos2.xml
+  mAspectRatio: 1.7391286
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1.541063
+  mWidth: 0.07
+  mHeight: 0.121739
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1844395208}
+  mPreview: {fileID: 1844395212}
 --- !u!4 &1844395211
 Transform:
   m_ObjectHideFlags: 0
@@ -553,13 +534,32 @@ Transform:
   m_GameObject: {fileID: 1844395207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.107, y: 0, z: 0}
+  m_LocalPosition: {x: -0.173, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1975176091}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1844395212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844395207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1844395210}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: tyris_flare_for_golden_axe
+  mDatasetName: Vuforia/Entornos2.xml
+  mCastedBehaviour: {fileID: 1844395210}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1975176090
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,8 +588,8 @@ Transform:
   m_GameObject: {fileID: 1975176090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: 0}
-  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
+  m_LocalPosition: {x: 0, y: 0.0314, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1844395211}
@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 2027460259}
   - component: {fileID: 2027460258}
   - component: {fileID: 2027460257}
-  - component: {fileID: 2027460256}
+  - component: {fileID: 2027460260}
   m_Layer: 0
   m_Name: MonsterRed
   m_TagString: Untagged
@@ -691,25 +691,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2027460256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027460255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 2027460258}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 3deoro
-  mDatasetName: Vuforia/BarajaEspanola.xml
-  mCastedBehaviour: {fileID: 2027460258}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &2027460257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,18 +774,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: 3deoro
+  mTrackableName: giliusthunderhead-goldenaxe
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/BarajaEspanola.xml
-  mAspectRatio: 1.541063
+  mDataSetPath: Vuforia/Entornos2.xml
+  mAspectRatio: 0.94100004
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1.541063
+  mWidth: 0.07
+  mHeight: 0.06587
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 2027460256}
+  mPreview: {fileID: 2027460260}
 --- !u!4 &2027460259
 Transform:
   m_ObjectHideFlags: 0
@@ -814,13 +795,32 @@ Transform:
   m_GameObject: {fileID: 2027460255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0, z: 0}
+  m_LocalPosition: {x: 0.024, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2045773990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2027460260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027460255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 2027460258}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: giliusthunderhead-goldenaxe
+  mDatasetName: Vuforia/Entornos2.xml
+  mCastedBehaviour: {fileID: 2027460258}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &2045773989
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +849,8 @@ Transform:
   m_GameObject: {fileID: 2045773989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.798, z: 0}
-  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
+  m_LocalPosition: {x: 0, y: 0.0322, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2027460259}

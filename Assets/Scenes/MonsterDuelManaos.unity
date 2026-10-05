@@ -277,13 +277,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242052532}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.323, z: -1.654}
+  m_LocalRotation: {x: 0.29226854, y: -0, z: -0, w: 0.9563363}
+  m_LocalPosition: {x: 0, y: 2.064, z: -2.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.988, y: 0, z: 0}
 --- !u!1 &1141781379
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 1844395210}
   mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
+  mTargetName: 3deespadas
+  mDatasetName: Vuforia/BarajaEspanola.xml
   mCastedBehaviour: {fileID: 1844395210}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -508,13 +508,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: 
+  mTrackableName: 3deespadas
   mInitializedInEditor: 1
-  mDataSetPath: 
-  mAspectRatio: 1
-  mImageTargetType: 3
-  mWidth: 0.2
-  mHeight: 0.2
+  mDataSetPath: Vuforia/BarajaEspanola.xml
+  mAspectRatio: 1.541063
+  mImageTargetType: 0
+  mWidth: 1
+  mHeight: 1.541063
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -568,8 +568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 2027460258}
   mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
+  mTargetName: 3deoro
+  mDatasetName: Vuforia/BarajaEspanola.xml
   mCastedBehaviour: {fileID: 2027460258}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -632,13 +632,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: 
+  mTrackableName: 3deoro
   mInitializedInEditor: 1
-  mDataSetPath: 
-  mAspectRatio: 1
-  mImageTargetType: 3
-  mWidth: 0.2
-  mHeight: 0.2
+  mDataSetPath: Vuforia/BarajaEspanola.xml
+  mAspectRatio: 1.541063
+  mImageTargetType: 0
+  mWidth: 1
+  mHeight: 1.541063
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0

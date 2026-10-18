@@ -277,13 +277,190 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242052532}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18581447, y: -0, z: -0, w: 0.9825849}
-  m_LocalPosition: {x: -0.067, y: 0.145, z: -0.244}
+  m_LocalRotation: {x: 0.55629563, y: 0, z: 0, w: 0.83098453}
+  m_LocalPosition: {x: 0.11, y: 4.153, z: -1.729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 21.417, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 67.6, y: 0, z: 0}
+--- !u!1 &555210731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 555210733}
+  - component: {fileID: 555210732}
+  m_Layer: 0
+  m_Name: FalsoGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &555210732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555210731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9e27b2130329442a5bc8d996578014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FalsoGameManager
+  targetDetectado:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 711848317}
+        m_TargetAssemblyTypeName: HUD, Assembly-CSharp
+        m_MethodName: RecibirCartaNueva
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  hudPrefab: {fileID: 711848316}
+--- !u!4 &555210733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555210731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0504, y: 0, z: 9.8757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &711848314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468935817152506644, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127166714456998239, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_Name
+      value: HudCartas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127166714456998239, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+--- !u!1 &711848316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8127166714456998239, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+  m_PrefabInstance: {fileID: 711848314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &711848317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3896417115884218074, guid: 1bea8a48f0d430e4c9a1c8780ff3ce87, type: 3}
+  m_PrefabInstance: {fileID: 711848314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711848316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee78460ee95126349bf245a7939a1619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUD
 --- !u!1 &1141781379
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,13 +690,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: tyris_flare_for_golden_axe
+  mTrackableName: armeddragonlv7-sod-jp-ur
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/Entornos2.xml
-  mAspectRatio: 1.7391286
+  mDataSetPath: Vuforia/YUgiohCards.xml
+  mAspectRatio: 1.462857
   mImageTargetType: 0
-  mWidth: 0.07
-  mHeight: 0.121739
+  mWidth: 1
+  mHeight: 1.462857
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -534,7 +711,7 @@ Transform:
   m_GameObject: {fileID: 1844395207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.662, y: 0, z: 0}
+  m_LocalPosition: {x: -1.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -555,8 +732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 1844395210}
   mHiddenRoot: {fileID: 0}
-  mTargetName: tyris_flare_for_golden_axe
-  mDatasetName: Vuforia/Entornos2.xml
+  mTargetName: armeddragonlv7-sod-jp-ur
+  mDatasetName: Vuforia/YUgiohCards.xml
   mCastedBehaviour: {fileID: 1844395210}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -589,8 +766,8 @@ Transform:
   m_GameObject: {fileID: 1975176090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0314, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1844395211}
@@ -614,7 +791,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1975176093
 MeshRenderer:
@@ -687,8 +864,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
   distanciaMinima: 0.1
   nameID: Esfera Azul
+  carta: {fileID: 1983875146582624983, guid: 3eb5801c485adfc43905920ff405d7f5, type: 3}
   infoTest: Hola, soy del equipo AZUL. Aguante el Chealsea
   enemigo: {fileID: 2045773989}
+  spawneaoElObjeto:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 555210732}
+        m_TargetAssemblyTypeName: FalsoGameManager, Assembly-CSharp
+        m_MethodName: EnviarInfoAlHud
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2027460255
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,13 +984,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: giliusthunderhead-goldenaxe
+  mTrackableName: armeddragonlv3-sod-jp-c
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/Entornos2.xml
-  mAspectRatio: 0.94100004
+  mDataSetPath: Vuforia/YUgiohCards.xml
+  mAspectRatio: 1.468571
   mImageTargetType: 0
-  mWidth: 0.07
-  mHeight: 0.06587
+  mWidth: 1
+  mHeight: 1.468571
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -812,7 +1005,7 @@ Transform:
   m_GameObject: {fileID: 2027460255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.024, y: 0, z: 0}
+  m_LocalPosition: {x: 1.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -833,8 +1026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 2027460258}
   mHiddenRoot: {fileID: 0}
-  mTargetName: giliusthunderhead-goldenaxe
-  mDatasetName: Vuforia/Entornos2.xml
+  mTargetName: armeddragonlv3-sod-jp-c
+  mDatasetName: Vuforia/YUgiohCards.xml
   mCastedBehaviour: {fileID: 2027460258}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -867,8 +1060,8 @@ Transform:
   m_GameObject: {fileID: 2045773989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0322, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2027460259}
@@ -892,7 +1085,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2045773992
 MeshRenderer:
@@ -965,13 +1158,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
   distanciaMinima: 0.1
   nameID: CuadradoRojo
+  carta: {fileID: -6046941952450560468, guid: 152db85faa815c64b86ce72a75e9198d, type: 3}
   infoTest: Hola, soy del equipo ROJO. Aguante el Arsenal
   enemigo: {fileID: 1975176090}
+  spawneaoElObjeto:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 555210732}
+        m_TargetAssemblyTypeName: FalsoGameManager, Assembly-CSharp
+        m_MethodName: EnviarInfoAlHud
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 242052538}
   - {fileID: 1141781382}
+  - {fileID: 555210733}
   - {fileID: 2027460259}
   - {fileID: 1844395211}
+  - {fileID: 711848314}

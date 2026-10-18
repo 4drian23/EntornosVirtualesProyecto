@@ -1,4 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class SpawnEvent : UnityEvent<GameObject> { }
 
 public class MonsterController : MonoBehaviour
 {
@@ -7,13 +12,18 @@ public class MonsterController : MonoBehaviour
     [SerializeField] float distanciaMinima = 0.1f; // La distancia se mide en metros, no en pixeles.
 
     [Tooltip("Informacion y Estadisticas")]
-    //[SerializeField] float velocidadDeMovimiento = 0;
     [SerializeField] string nameID;
+    [SerializeField] Sprite carta;
     [SerializeField] string infoTest;
     private string enemyInfo;
+    private bool estaActivo;
 
     [Tooltip("Referencias del Enemigo")]
     [SerializeField] GameObject enemigo; 
+
+      public SpawnEvent spawneaoElObjeto;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //[SerializeField] MonsterController enemyScript;
 
     /*[Tooltip("Animator")]
@@ -25,13 +35,21 @@ public class MonsterController : MonoBehaviour
         this.nameID = iD;
         this.infoTest = info;
     }*/ 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
     void Start()
     {
         
     }
+
     void Update()
     {
+        if (this.gameObject.activeInHierarchy)
+        {
+            estaActivo = true;
+            spawneaoElObjeto?.Invoke(this.gameObject);
+        }
+
         DetectarEnemigo();
     }
 
@@ -50,7 +68,6 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-
     string DarInfo()
     {
         return infoTest;
@@ -63,7 +80,14 @@ public class MonsterController : MonoBehaviour
         Debug.Log($"{nameID} recibio esta información: {enemyInfo}");
     }
 
-
+    public string EntregarNombre()
+    {
+        return nameID;
+    }
+    public Sprite EntregarCarta()
+    {
+        return carta;
+    }
 
     // Hay que rebisar como se comporta el objeto al escanear varios enemigos en sus alrededores.
     // Por ahora los objetos no se desativan al desaparecer el target del lente. NO se porque

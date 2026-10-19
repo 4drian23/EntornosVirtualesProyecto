@@ -1,4 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class SpawnEvent : UnityEvent<GameObject> { }
 
 public class MonsterController : MonoBehaviour
 {
@@ -6,14 +11,20 @@ public class MonsterController : MonoBehaviour
     [Tooltip("Distancia a la que detecta a un objeivo enemigo")]
     [SerializeField] float distanciaMinima = 0.1f; // La distancia se mide en metros, no en pixeles.
 
-    [Tooltip("Informacion y Estadisticas")]
-    //[SerializeField] float velocidadDeMovimiento = 0;
+    [Tooltip("Información del Mosntruo")]
     [SerializeField] string nameID;
+    [SerializeField] int atk;
+    [SerializeField] Sprite cartaSprite;
     [SerializeField] string infoTest;
-    private string enemyInfo;
 
-    [Tooltip("Referencias del Enemigo")]
+    [Tooltip("Información del Enemigo")]
     [SerializeField] GameObject enemigo; 
+
+    private string enemyInfo;
+    private bool estaActivo;
+    public SpawnEvent spawneaoElObjeto;
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //[SerializeField] MonsterController enemyScript;
 
     /*[Tooltip("Animator")]
@@ -24,14 +35,21 @@ public class MonsterController : MonoBehaviour
     {
         this.nameID = iD;
         this.infoTest = info;
-    }*/ 
+    }*/
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Start()
     {
-        
+        (string nameID, int atk, Sprite cartaSprite) = EntregarDatos();
     }
     void Update()
     {
+        if (this.gameObject.activeInHierarchy) //Si esta activo, envia la señal al manager junto a la referencia de su GameObject;
+        {
+            estaActivo = true;
+            spawneaoElObjeto?.Invoke(this.gameObject);
+        }
+
         DetectarEnemigo();
     }
 
@@ -50,7 +68,6 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-
     string DarInfo()
     {
         return infoTest;
@@ -63,10 +80,8 @@ public class MonsterController : MonoBehaviour
         Debug.Log($"{nameID} recibio esta información: {enemyInfo}");
     }
 
-
-
-    // Hay que rebisar como se comporta el objeto al escanear varios enemigos en sus alrededores.
-    // Por ahora los objetos no se desativan al desaparecer el target del lente. NO se porque
-    // El objeto no deberia moverse de su posicion. Simpre moverse junto a la carta.
-    // Pareciera que el intercambio de informacion solo se efectua una vez. NO se porque.
+    public (string nombre, int ataque, Sprite imagen) EntregarDatos()
+    {
+        return(nameID, atk, cartaSprite);
+    }
 }

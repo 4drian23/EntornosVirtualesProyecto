@@ -11,17 +11,17 @@ public class MonsterController : MonoBehaviour
     [Tooltip("Distancia a la que detecta a un objeivo enemigo")]
     [SerializeField] float distanciaMinima = 0.1f; // La distancia se mide en metros, no en pixeles.
 
-    [Tooltip("Informacion y Estadisticas")]
+    [Tooltip("Información del Mosntruo")]
     [SerializeField] string nameID;
     [SerializeField] Sprite carta;
     [SerializeField] string infoTest;
-    private string enemyInfo;
-    private bool estaActivo;
 
-    [Tooltip("Referencias del Enemigo")]
+    [Tooltip("Información del Enemigo")]
     [SerializeField] GameObject enemigo; 
 
-      public SpawnEvent spawneaoElObjeto;
+    private string enemyInfo;
+    private bool estaActivo;
+    public SpawnEvent spawneaoElObjeto;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //[SerializeField] MonsterController enemyScript;
@@ -36,15 +36,10 @@ public class MonsterController : MonoBehaviour
         this.infoTest = info;
     }*/ 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
-        if (this.gameObject.activeInHierarchy)
+        if (this.gameObject.activeInHierarchy) //Si esta activo, envia la señal al manager junto a la referencia de su GameObject;
         {
             estaActivo = true;
             spawneaoElObjeto?.Invoke(this.gameObject);
@@ -84,13 +79,8 @@ public class MonsterController : MonoBehaviour
     {
         return nameID;
     }
-    public Sprite EntregarCarta()
+    public Sprite EntregarSprite()
     {
         return carta;
     }
-
-    // Hay que rebisar como se comporta el objeto al escanear varios enemigos en sus alrededores.
-    // Por ahora los objetos no se desativan al desaparecer el target del lente. NO se porque
-    // El objeto no deberia moverse de su posicion. Simpre moverse junto a la carta.
-    // Pareciera que el intercambio de informacion solo se efectua una vez. NO se porque.
 }

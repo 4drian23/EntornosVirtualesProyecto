@@ -13,7 +13,8 @@ public class MonsterController : MonoBehaviour
 
     [Tooltip("Información del Mosntruo")]
     [SerializeField] string nameID;
-    [SerializeField] Sprite carta;
+    [SerializeField] int atk;
+    [SerializeField] Sprite cartaSprite;
     [SerializeField] string infoTest;
 
     [Tooltip("Información del Enemigo")]
@@ -23,7 +24,7 @@ public class MonsterController : MonoBehaviour
     private bool estaActivo;
     public SpawnEvent spawneaoElObjeto;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //[SerializeField] MonsterController enemyScript;
 
     /*[Tooltip("Animator")]
@@ -34,9 +35,13 @@ public class MonsterController : MonoBehaviour
     {
         this.nameID = iD;
         this.infoTest = info;
-    }*/ 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }*/
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    void Start()
+    {
+        (string nameID, int atk, Sprite cartaSprite) = EntregarDatos();
+    }
     void Update()
     {
         if (this.gameObject.activeInHierarchy) //Si esta activo, envia la señal al manager junto a la referencia de su GameObject;
@@ -75,12 +80,8 @@ public class MonsterController : MonoBehaviour
         Debug.Log($"{nameID} recibio esta información: {enemyInfo}");
     }
 
-    public string EntregarNombre()
+    public (string nombre, int ataque, Sprite imagen) EntregarDatos()
     {
-        return nameID;
-    }
-    public Sprite EntregarSprite()
-    {
-        return carta;
+        return(nameID, atk, cartaSprite);
     }
 }

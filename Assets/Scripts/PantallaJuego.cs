@@ -71,6 +71,9 @@ public class PantallaJuego : MonoBehaviour
     private void Elegido(int idx)
     {
         panelEleccion.SetActive(false);
-        alElegir?.Invoke(idx);
+
+        var cb = alElegir;
+        alElegir = null; // por si tocan dos veces rapido
+        cb?.Invoke(idx);
     }
 }

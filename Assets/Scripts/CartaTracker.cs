@@ -13,23 +13,32 @@ public class CartaTracker : MonoBehaviour
     [SerializeField] Monstruo modelo;
 
     public bool EnMesa { get; private set; }
-    public bool Derrotada { get; set; } // la marca el GameManager cuando pierde un duelo
+    public bool Derrotada { get; set; } // la maneja el GameManager
 
     public Monstruo Modelo => modelo;
 
+    private ObserverBehaviour observer;
     private bool visible;
     private float perdidaDesde;
 
     void Start()
     {
+        if (datos == null) Debug.LogError($"{name} no tiene CartaData asignada");
+
         // Vuforia nos avisa cada vez que cambia el estado del target
-        GetComponent<ObserverBehaviour>().OnTargetStatusChanged += CambioStatus;
+        observer = GetComponent<ObserverBehaviour>();
+        observer.OnTargetStatusChanged += CambioStatus;
 
         if (modelo != null)
         {
             modelo.Configurar(datos);
             modelo.Esconder(); // hasta q la camara no vea la carta no se muestra nada
         }
+    }
+
+    void OnDestroy()
+    {
+        if (observer != null) observer.OnTargetStatusChanged -= CambioStatus;
     }
 
     void Update()
@@ -45,11 +54,11 @@ public class CartaTracker : MonoBehaviour
         if (visible && !EnMesa)
         {
             EnMesa = true;
-            Derrotada = false; // si vuelve a la mesa arranca de cero
 
-            if (modelo != null) modelo.Aparecer();
+            // el manager decide si es una jugada nueva o si la carta solo reaparecio (y si sigue derrotada)
+            if (GameManager.inst != null) GameManager.inst.CartaEntro(this);
 
-            GameManager.inst.CartaEntro(this);
+            if (modelo != null && !Derrotada) modelo.Aparecer();
         }
         else if (!visible)
         {
@@ -66,9 +75,7 @@ public class CartaTracker : MonoBehaviour
 
             if (modelo != null) modelo.Esconder();
 
-            GameManager.inst.CartaSalio(this);
+            if (GameManager.inst != null) GameManager.inst.CartaSalio(this);
         }
     }
-
-    // Falta ver que pasa si la carta se saca y se vuelve a poner en otro lado rapido.
 }

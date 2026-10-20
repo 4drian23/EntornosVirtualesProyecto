@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private List<CartaTracker> enMesa = new List<CartaTracker>();
     private Dictionary<CartaTracker, Vector3> posAsentada = new Dictionary<CartaTracker, Vector3>(); // ultima posicion "firme" de cada carta
     private Dictionary<CartaTracker, Vector2Int> casillas = new Dictionary<CartaTracker, Vector2Int>();
+    private Dictionary<CartaTracker, Vector2Int> ultimaCasilla = new Dictionary<CartaTracker, Vector2Int>(); // donde estaba cada carta cuando se fue
 
     private HUD hud; // el de Adrian, lo busca solo en la escena
 
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
     private Quaternion refRot;
 
     private CartaTracker ultimaJugada; // la carta q se puso o se movio por ultima vez, es la q ataca
-    private List<CartaTracker> esperandoRetiro = new List<CartaTracker>(); // perdedoras q todavia estan en la mesa
+    private bool hayCambios; // para no revisar duelos y tres en linea en cada frame si no paso nada
+    private string mensajeRetiro;
 
     void Awake()
     {
@@ -44,7 +46,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        hud = FindFirstObjectByType<HUD>();
+        hud = FindAnyObjectByType<HUD>();
+
+        if (!Sesion.eligio) Debug.LogWarning("Entraste sin pasar por el menu, se juega como equipo Rojo");
 
         pantalla.Mensaje($"Jugás con el equipo {Sesion.equipo}. Apuntá a las cartas sobre la mesa.");
     }
@@ -55,8 +59,15 @@ public class GameManager : MonoBehaviour
 
         ActualizarCasillas();
 
-        if (estado == Estado.Esperando) BuscarDuelo();
-        else if (estado == Estado.EsperandoRetiro) RevisarRetiro();
+        if (estado == Estado.Esperando && hayCambios)
+        {
+            hayCambios = false;
+            BuscarDuelo();
+        }
+        else if (estado == Estado.EsperandoRetiro)
+        {
+            RevisarRetiro();
+        }
     }
 
     public void CartaEntro(CartaTracker c)
@@ -71,16 +82,35 @@ public class GameManager : MonoBehaviour
         if (!enMesa.Contains(c)) enMesa.Add(c);
 
         posAsentada[c] = c.transform.position;
-        casillas[c] = Casilla(posAsentada[c]);
-        ultimaJugada = c;
+        var cas = Casilla(posAsentada[c]);
+        casillas[c] = cas;
 
-        if (hud != null) hud.RecibirCartaNueva(c.datos);
+        // Si vuelve a la misma casilla de donde se fue, la camara la perdio un rato. No es una jugada nueva
+        bool reaparecio = ultimaCasilla.TryGetValue(c, out var antes) && antes == cas;
+        ultimaCasilla.Remove(c);
 
-        Debug.Log($"Entro {c.datos.nombre}");
+        if (!reaparecio)
+        {
+            c.Derrotada = false;
+            ultimaJugada = c;
+            hayCambios = true;
+
+            if (hud != null) hud.RecibirCartaNueva(c.datos);
+        }
+        else if (c.Derrotada && estado == Estado.Esperando)
+        {
+            // la perdedora sigue en la mesa, volvemos a esperar que la saquen
+            estado = Estado.EsperandoRetiro;
+            pantalla.Mensaje(mensajeRetiro);
+        }
+
+        Debug.Log($"Entro {c.datos.nombre}" + (reaparecio ? " (reaparecio)" : ""));
     }
 
     public void CartaSalio(CartaTracker c)
     {
+        if (casillas.TryGetValue(c, out var cas)) ultimaCasilla[c] = cas;
+
         enMesa.Remove(c);
         casillas.Remove(c);
         posAsentada.Remove(c);
@@ -100,7 +130,11 @@ public class GameManager : MonoBehaviour
                 posAsentada[c] = c.transform.position;
                 casillas[c] = Casilla(posAsentada[c]);
 
-                if (estado == Estado.Esperando && !c.Derrotada) ultimaJugada = c;
+                if (!c.Derrotada)
+                {
+                    ultimaJugada = c;
+                    hayCambios = true;
+                }
             }
         }
     }
@@ -163,7 +197,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                estado = Estado.Esperando; // alguna de las cartas ya no esta, se cancela
+                // alguna de las cartas ya no esta en la mesa
+                estado = Estado.Esperando;
+                hayCambios = true;
+                pantalla.Mensaje("Se canceló el duelo, una de las cartas salió de la mesa.");
             }
         });
     }
@@ -180,19 +217,15 @@ public class GameManager : MonoBehaviour
         yield return b.Modelo.Atacar(a.Modelo.transform.position);
         yield return ataqueA;
 
-        esperandoRetiro.Clear();
-
         if (a.datos.puntos == b.datos.puntos)
         {
             a.Derrotada = true;
             b.Derrotada = true;
-            esperandoRetiro.Add(a);
-            esperandoRetiro.Add(b);
 
             StartCoroutine(a.Modelo.Morir());
             yield return b.Modelo.Morir();
 
-            pantalla.Mensaje($"Empate. {a.datos.nombre} y {b.datos.nombre} se retiran de la mesa.");
+            mensajeRetiro = $"Empate. {a.datos.nombre} y {b.datos.nombre} se retiran de la mesa.";
         }
         else
         {
@@ -200,27 +233,29 @@ public class GameManager : MonoBehaviour
             var pierde = gana == a ? b : a;
 
             pierde.Derrotada = true;
-            esperandoRetiro.Add(pierde);
 
             StartCoroutine(gana.Modelo.Festejar());
             yield return pierde.Modelo.Morir();
 
             if (gana.datos.equipo == Sesion.equipo)
-                pantalla.Mensaje($"¡Victoria! {gana.datos.nombre} venció a {pierde.datos.nombre}. Mantené tu posición en la mesa.");
+                mensajeRetiro = $"¡Victoria! {gana.datos.nombre} venció a {pierde.datos.nombre}. Mantené tu posición en la mesa.";
             else
-                pantalla.Mensaje($"Derrota. {pierde.datos.nombre} fue vencida por {gana.datos.nombre}. Retirá tu carta de la mesa para seguir.");
+                mensajeRetiro = $"Derrota. {pierde.datos.nombre} fue vencida por {gana.datos.nombre}. Retirá tu carta de la mesa para seguir.";
         }
 
+        pantalla.Mensaje(mensajeRetiro);
         estado = Estado.EsperandoRetiro;
     }
 
     private void RevisarRetiro()
     {
-        esperandoRetiro.RemoveAll(c => !enMesa.Contains(c));
-
-        if (esperandoRetiro.Count > 0) return; // todavia no sacaron la carta
+        foreach (var c in enMesa)
+        {
+            if (c.Derrotada) return; // todavia no sacaron la carta
+        }
 
         estado = Estado.Esperando;
+        hayCambios = true; // por si pusieron otra carta mientras esperabamos
         pantalla.Mensaje("Listo. Sigue el juego.");
     }
 

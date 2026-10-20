@@ -22,12 +22,12 @@ public class Monstruo : MonoBehaviour
         posInicial = transform.localPosition;
         transform.localScale = Vector3.zero;
 
-        // una luz chiquita para el brillo del combate, arranca apagada
+        // una luz chiquita para el brillo del combate, se prende solo cuando hace falta
         luz = new GameObject("Luz").AddComponent<Light>();
         luz.transform.SetParent(transform, false);
         luz.type = LightType.Point;
         luz.range = 0.2f;
-        luz.intensity = 0;
+        luz.enabled = false;
     }
 
     void Update()
@@ -37,6 +37,8 @@ public class Monstruo : MonoBehaviour
 
     public void Configurar(CartaData datos)
     {
+        if (datos == null) return;
+
         luz.color = datos.equipo == Equipo.Rojo ? new Color(1f, 0.3f, 0.2f) : new Color(0.3f, 0.5f, 1f);
 
         if (datos.monstruo != null && modelo == null)
@@ -59,7 +61,8 @@ public class Monstruo : MonoBehaviour
         StopAllCoroutines();
         transform.localScale = Vector3.zero;
         transform.localPosition = posInicial;
-        luz.intensity = 0;
+        quieto = true;
+        luz.enabled = false;
         gameObject.SetActive(false);
     }
 
@@ -81,6 +84,7 @@ public class Monstruo : MonoBehaviour
     public IEnumerator Festejar()
     {
         quieto = false;
+        luz.enabled = true;
 
         for (float t = 0; t < 1.2f; t += Time.deltaTime)
         {
@@ -91,7 +95,7 @@ public class Monstruo : MonoBehaviour
             yield return null;
         }
 
-        luz.intensity = 0;
+        luz.enabled = false;
         transform.localScale = Vector3.one;
         quieto = true;
     }
@@ -100,11 +104,12 @@ public class Monstruo : MonoBehaviour
     public IEnumerator Morir()
     {
         quieto = false;
+        luz.enabled = true;
         luz.intensity = 2f;
 
         yield return Escalar(Vector3.zero, 0.8f);
 
-        luz.intensity = 0;
+        luz.enabled = false;
         gameObject.SetActive(false);
     }
 

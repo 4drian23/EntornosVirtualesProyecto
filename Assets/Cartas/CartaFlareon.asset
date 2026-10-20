@@ -15,4 +15,5 @@ MonoBehaviour:
   nombre: Flareon
   puntos: 4
   equipo: 0
-  monstruo: {fileID: 0}
+  imagen: {fileID: 21300000, guid: 1d0f5e6e9830489eb64dc045f9c46b8f, type: 3}
+  monstruo: {fileID: 100000, guid: ec516885e6a64e5ab042b9a14573d840, type: 3}

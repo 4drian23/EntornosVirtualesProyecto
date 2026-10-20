@@ -15,4 +15,5 @@ MonoBehaviour:
   nombre: Mantine
   puntos: 4
   equipo: 1
-  monstruo: {fileID: 0}
+  imagen: {fileID: 21300000, guid: dfd21e27c08a443f90eb079236e93fc9, type: 3}
+  monstruo: {fileID: 100000, guid: 0b6bc03e15be453b8b01daabc1c488f5, type: 3}

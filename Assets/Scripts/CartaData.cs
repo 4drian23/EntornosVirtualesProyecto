@@ -11,6 +11,10 @@ public class CartaData : ScriptableObject
     public int puntos;
     public Equipo equipo;
 
-    [Tooltip("Prefab del monstruo")]
-    public GameObject monstruo; // Todavia no se usa, por ahora solo hay un texto arriba de la carta.
+    [Header("Visual")]
+    [Tooltip("Imagen de la carta, se muestra en el HUD")]
+    public Sprite imagen;
+
+    [Tooltip("Prefab del monstruo. Por ahora son cubos, despues van los modelos de verdad")]
+    public GameObject monstruo;
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   nombre: Psyduck
   puntos: 2
   equipo: 1
-  monstruo: {fileID: 0}
+  imagen: {fileID: 21300000, guid: 81699f060b4141d28e69cfbe18821b8c, type: 3}
+  monstruo: {fileID: 100000, guid: 0b6bc03e15be453b8b01daabc1c488f5, type: 3}

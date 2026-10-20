@@ -9,10 +9,13 @@ public class CartaTracker : MonoBehaviour
     [Tooltip("Segundos que espera sin ver la carta antes de darla por sacada")]
     [SerializeField] float gracia = 1.5f; // En segundos.
 
-    [Tooltip("Texto que flota arriba de la carta (por ahora es para debug)")]
-    [SerializeField] TextMesh etiqueta;
+    [Tooltip("Objeto donde se instancia el modelo 3D")]
+    [SerializeField] Monstruo modelo;
 
     public bool EnMesa { get; private set; }
+    public bool Derrotada { get; set; } // la marca el GameManager cuando pierde un duelo
+
+    public Monstruo Modelo => modelo;
 
     private bool visible;
     private float perdidaDesde;
@@ -21,6 +24,12 @@ public class CartaTracker : MonoBehaviour
     {
         // Vuforia nos avisa cada vez que cambia el estado del target
         GetComponent<ObserverBehaviour>().OnTargetStatusChanged += CambioStatus;
+
+        if (modelo != null)
+        {
+            modelo.Configurar(datos);
+            modelo.Esconder(); // hasta q la camara no vea la carta no se muestra nada
+        }
     }
 
     void Update()
@@ -36,6 +45,10 @@ public class CartaTracker : MonoBehaviour
         if (visible && !EnMesa)
         {
             EnMesa = true;
+            Derrotada = false; // si vuelve a la mesa arranca de cero
+
+            if (modelo != null) modelo.Aparecer();
+
             GameManager.inst.CartaEntro(this);
         }
         else if (!visible)
@@ -50,13 +63,11 @@ public class CartaTracker : MonoBehaviour
         if (EnMesa && !visible && Time.time - perdidaDesde > gracia)
         {
             EnMesa = false;
+
+            if (modelo != null) modelo.Esconder();
+
             GameManager.inst.CartaSalio(this);
         }
-    }
-
-    public void MostrarTexto(string txt)
-    {
-        if (etiqueta != null) etiqueta.text = txt;
     }
 
     // Falta ver que pasa si la carta se saca y se vuelve a poner en otro lado rapido.

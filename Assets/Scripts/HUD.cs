@@ -5,29 +5,30 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [Tooltip("Referencia de los componentes Image")]
-    [SerializeField] Image imageComponentPlayer1; //Referencia al componente Image del hud del jugador 1;
-    [SerializeField] Image imageComponentPlayer2; //Referencia al componente Image del hud del jugador 2;
+    [SerializeField] Image imageComponentPlayer1; //Referencia al componente Image del hud del jugador 1 (equipo rojo);
+    [SerializeField] Image imageComponentPlayer2; //Referencia al componente Image del hud del jugador 2 (equipo azul);
 
-    private Dictionary<string, (int atk, Sprite cartaSprite)> bancoDeCartas = new Dictionary<string, (int atk, Sprite cartaSprite)>(); //Diccionario para almacenar la informacion necesaria de cada carta;
-    private Sprite cartaActiva; //Referencia de la carta que se muestra al frente;
+    private Dictionary<string, CartaData> bancoDeCartas = new Dictionary<string, CartaData>(); //Diccionario para almacenar la informacion necesaria de cada carta;
 
-    private void ActualizarImagen(string nombreKey) //Cada vez que se llame a esta funcion, se actualiza la imagen frontal. Por ahora se llama en RecibirCartaNueva, pero deberia llamarse cuando el jugador toque la cantalla sobre la ui;
+    private void ActualizarImagen(string nombreKey) //Cada vez que se llame a esta funcion, se actualiza la imagen frontal del equipo que corresponda;
     {
-        if (bancoDeCartas.ContainsKey(nombreKey))
-        {
-            cartaActiva = bancoDeCartas[nombreKey].cartaSprite;
-            imageComponentPlayer1.sprite = cartaActiva;
-        }
+        if (!bancoDeCartas.ContainsKey(nombreKey)) return;
+
+        CartaData carta = bancoDeCartas[nombreKey];
+        Image destino = carta.equipo == Equipo.Rojo ? imageComponentPlayer1 : imageComponentPlayer2;
+
+        if (destino != null && carta.imagen != null) destino.sprite = carta.imagen;
     }
 
-    public void RecibirCartaNueva((string nombreID, int ataque, Sprite imagenCarta) datosNuevaCarta) //Se actualiza el diccionario la primera vez que se escanea cada carta en juego;
+    public void RecibirCartaNueva(CartaData carta) //Lo llama el GameManager cuando entra una carta a la mesa. Antes recibia una tupla, ahora recibe la CartaData directo;
     {
-        if (bancoDeCartas.ContainsKey(datosNuevaCarta.nombreID)) return;
+        if (!bancoDeCartas.ContainsKey(carta.nombre))
+        {
+            Debug.Log($"Se recibio la siguiente info: {carta.nombre}, {carta.imagen}");
+            bancoDeCartas.Add(carta.nombre, carta);
+        }
 
-        Debug.Log($"Se recibio la siguiente info: {datosNuevaCarta.nombreID}, {datosNuevaCarta.imagenCarta}");
-        bancoDeCartas.Add(datosNuevaCarta.nombreID, (datosNuevaCarta.ataque, datosNuevaCarta.imagenCarta));
-
-       ActualizarImagen(datosNuevaCarta.nombreID);
+        ActualizarImagen(carta.nombre);
     }
 
 

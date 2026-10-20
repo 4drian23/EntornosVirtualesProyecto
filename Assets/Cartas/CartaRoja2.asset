@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31da024d1dee454c928eab8a26e98a4, type: 3}
+  m_Name: CartaRoja2
+  m_EditorClassIdentifier: Assembly-CSharp::CartaData
+  nombre: Big Foot Rojo 2
+  puntos: 4
+  equipo: 0
+  imagen: {fileID: 21300000, guid: d833812c32bc4dcc983e79bb4084b46a, type: 3}
+  monstruo: {fileID: 100000, guid: ec516885e6a64e5ab042b9a14573d840, type: 3}

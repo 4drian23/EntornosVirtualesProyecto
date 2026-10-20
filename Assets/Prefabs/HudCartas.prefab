@@ -442,7 +442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2800
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2800
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -989,6 +989,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HUD
   imageComponentPlayer1: {fileID: 5408743719197753339}
   imageComponentPlayer2: {fileID: 6089733527486504106}
+  puntosPlayer1: {fileID: 594721423710490934}
+  puntosPlayer2: {fileID: 7667666006066846706}
 --- !u!1 &8952730881544249803
 GameObject:
   m_ObjectHideFlags: 0

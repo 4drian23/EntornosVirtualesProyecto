@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="cartaroja3" size="0.063000 0.088200" />
+    <ImageTarget name="cartaroja2" size="0.063000 0.088200" />
+    <ImageTarget name="cartaroja1" size="0.063000 0.088200" />
+    <ImageTarget name="cartaazul3" size="0.063000 0.088200" />
+    <ImageTarget name="cartaazul2" size="0.063000 0.088200" />
+    <ImageTarget name="cartaazul1" size="0.063000 0.088200" />
+  </Tracking>
+</QCARConfig>

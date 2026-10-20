@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,13 @@ public class MenuEquipo : MonoBehaviour
         Sesion.equipo = eq;
         Sesion.eligio = true;
 
+        StartCoroutine(Cargar());
+    }
+
+    // Si cargo la escena en el mismo click el boton se queda sin su Image y tira MissingReferenceException, por eso espero un frame
+    private IEnumerator Cargar()
+    {
+        yield return null;
         SceneManager.LoadScene(escenaJuego);
     }
 }

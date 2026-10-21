@@ -6,10 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 43f2b0aca7064be0830b814fa0a9e5f9
+  - enabled: 1
     path: Assets/Scenes/MonsterDuelManaos.unity
     guid: 432775c06808ddd408730e5434fe8ca5
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/HUD.unity
+    guid: 49e81d6fa6d1a0e4196761d76d647158
+  - enabled: 0
+    path: Assets/Scenes/ignorar/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0f130ff587336ff458a8258f6cd5f6a6, type: 2}

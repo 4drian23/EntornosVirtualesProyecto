@@ -15,4 +15,5 @@ MonoBehaviour:
   nombre: Vaporeon
   puntos: 5
   equipo: 1
-  monstruo: {fileID: 0}
+  imagen: {fileID: 21300000, guid: c0a8f2fa7fb64ab299c9c1bc7df6ddd7, type: 3}
+  monstruo: {fileID: 100000, guid: 0b6bc03e15be453b8b01daabc1c488f5, type: 3}

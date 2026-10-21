@@ -16,4 +16,4 @@ MonoBehaviour:
   puntos: 3
   equipo: 1
   imagen: {fileID: 21300000, guid: 9f62876bd21a46de9a2c135231acc692, type: 3}
-  monstruo: {fileID: 100000, guid: 0b6bc03e15be453b8b01daabc1c488f5, type: 3}
+  monstruo: {fileID: 5839605708516781737, guid: 6d488fb19cee4704bb23dce5d0a7532f, type: 3}

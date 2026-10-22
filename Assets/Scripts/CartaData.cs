@@ -15,6 +15,6 @@ public class CartaData : ScriptableObject
     [Tooltip("Imagen de la carta, se muestra en el HUD")]
     public Sprite imagen;
 
-    [Tooltip("Prefab del monstruo. Por ahora son los cubos de Assets/Prefabs, para el modelo de verdad se arrastra el prefab nuevo aca (ver Monstruo.cs)")]
+    [Tooltip("Prefab del monstruo que aparece sobre la carta. Si tiene Animator usa sus clips, si no (los cubos) una animacion simple")]
     public GameObject monstruo;
 }

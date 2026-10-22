@@ -159,12 +159,15 @@ public class GameManager : MonoBehaviour
         return asentada.TryGetValue(c, out var p) ? p.position : c.transform.position;
     }
 
-    // Una carta que esta mucho mas alta que las demas no esta apoyada, la tienen en la mano
+    // Una carta que esta mucho mas alta que las demas no esta apoyada, la tienen en la mano.
+    // La altura se mide respecto del plano de las cartas apoyadas, no del eje Y del mundo (en el editor con webcam el mundo es la camara)
     public bool AlturaDeMesa(Vector3 pos)
     {
         foreach (var c in enMesa)
         {
-            if (Mathf.Abs(pos.y - asentada[c].position.y) < tamCarta.x) return true;
+            var p = asentada[c];
+            float altura = Vector3.Dot(pos - p.position, p.rotation * Vector3.up);
+            if (Mathf.Abs(altura) < tamCarta.x) return true;
         }
         return enMesa.Count == 0; // sin cartas no hay con que comparar
     }

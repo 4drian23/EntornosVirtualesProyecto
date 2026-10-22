@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4616973353895356255, guid: b109126f5a5654e4fb39f89e7b7a1e00, type: 3}
+  m_Sprite: {fileID: -1970867779025821005, guid: 5a1ef8b2c1f1d67479b3075983a14e96, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4616973353895356255, guid: b109126f5a5654e4fb39f89e7b7a1e00, type: 3}
+  m_Sprite: {fileID: 499061148034338457, guid: 33e101e6aa6b3004f8c7e1a441eba3f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1983875146582624983, guid: 3eb5801c485adfc43905920ff405d7f5, type: 3}
+  m_Sprite: {fileID: 499061148034338457, guid: 33e101e6aa6b3004f8c7e1a441eba3f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1983875146582624983, guid: 3eb5801c485adfc43905920ff405d7f5, type: 3}
+  m_Sprite: {fileID: -1970867779025821005, guid: 5a1ef8b2c1f1d67479b3075983a14e96, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1983875146582624983, guid: 3eb5801c485adfc43905920ff405d7f5, type: 3}
+  m_Sprite: {fileID: -1970867779025821005, guid: 5a1ef8b2c1f1d67479b3075983a14e96, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1983875146582624983, guid: 3eb5801c485adfc43905920ff405d7f5, type: 3}
+  m_Sprite: {fileID: 499061148034338457, guid: 33e101e6aa6b3004f8c7e1a441eba3f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

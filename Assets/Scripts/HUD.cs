@@ -16,7 +16,7 @@ public class HUD : MonoBehaviour
     private List<CartaData> cartasRojas = new List<CartaData>(); //Cartas de cada equipo que estan en la mesa, se muestra la ultima que entro;
     private List<CartaData> cartasAzules = new List<CartaData>();
 
-    private Sprite imagenInicial1; //Lo que tenia cada Image antes de escanear nada (la carta de yugioh), se vuelve a poner cuando no queda ninguna carta del equipo;
+    private Sprite imagenInicial1; //Lo que tenia cada Image antes de escanear nada (el reverso de la carta), se vuelve a poner cuando no queda ninguna carta del equipo;
     private Sprite imagenInicial2;
 
     void Awake()

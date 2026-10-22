@@ -2,37 +2,31 @@ using System.Collections;
 using UnityEngine;
 
 // Va en el objeto "Modelo" de cada carta. Adentro se instancia el prefab q diga la CartaData.
-//
-// ===== PARA CUANDO ESTEN LOS MODELOS 3D =====
-// Hoy el prefab es un cubo (CuboRojo / CuboAzul en Assets/Prefabs). Para poner el modelo de verdad:
-//  1. Armar el prefab del monstruo con escala en metros (la carta mide 6,3 cm, el cubo mide 3 cm) y
-//     arrastrarlo al campo "monstruo" de la CartaData de esa carta. No hay que tocar codigo.
-//  2. Si el prefab tiene un Animator, este script le dispara los triggers "Ataque", "Victoria" y
-//     "Derrota" (los que existan). El idle lo hace el Animator solo, aca no se gira el modelo.
-//     El clip de derrota tiene que durar mas o menos tiempoDerrota, pasado ese tiempo se esconde.
-//  3. Lo marcado PROVISORIO es lo que hace que el cubo se vea vivo (giro, luz, achicarse al morir).
-//     Con modelos animados sobra, pero tampoco rompe nada si queda.
-// Todo lo demas mueve este objeto (el padre del modelo), asi que la flotacion, el avance del ataque y
-// mirar al rival sirven para cualquier modelo que pongan adentro.
+// Si el prefab tiene Animator le dispara los triggers "Ataque", "Victoria" y "Derrota" (los estados se llaman igual)
+// y espera lo que dure cada clip. Si no tiene (los cubos), hace una animacion simple con el transform.
+// Todo lo demas (flotacion, avance del ataque, mirar al rival) mueve este objeto, el padre del modelo, asi que sirve para cualquiera.
 public class Monstruo : MonoBehaviour
 {
     [Header("Idle")]
-    [Tooltip("Grados por segundo que gira cuando esta quieto. PROVISORIO para el cubo, con un modelo con Animator no se usa")]
+    [Tooltip("Grados por segundo que gira cuando esta quieto. Solo para modelos sin Animator")]
     [SerializeField] float velGiro = 40f;
 
     [Tooltip("Cuanto sube y baja flotando, en metros. 0 para que no flote")]
     [SerializeField] float flotacion = 0.004f;
 
-    [Header("Tiempos")]
+    [Header("Tiempos (con Animator se usa lo que dure cada clip)")]
     [Tooltip("Cuanto tarda en aparecer")]
     [SerializeField] float tiempoAparecer = 0.4f;
 
-    [Tooltip("Cuanto dura la derrota antes de esconderse. Si el modelo tiene clip de derrota, poner lo que dure el clip")]
+    [Tooltip("Cuanto dura el ataque sin Animator (ir y volver)")]
+    [SerializeField] float tiempoAtaque = 0.9f;
+
+    [Tooltip("Cuanto dura la derrota sin Animator antes de esconderse")]
     [SerializeField] float tiempoDerrota = 0.8f;
 
     private GameObject modelo;
     private Animator animator;   // el del prefab, si tiene
-    private Light luz;           // PROVISORIO: brillo para que el cubo haga algo en la pelea
+    private Light luz;           // brillo para la pelea
     private Vector3 posInicial;
     private bool quieto = true;  // mientras es true hace el idle
     private float reloj;         // para la flotacion
@@ -57,11 +51,11 @@ public class Monstruo : MonoBehaviour
     {
         if (!quieto) return;
 
-        // idle: flota un poco. Vale para el cubo y para cualquier modelo
+        // idle: flota un poco
         reloj += Time.deltaTime;
         transform.localPosition = posInicial + Vector3.up * (Mathf.Sin(reloj * 2f) * flotacion);
 
-        // PROVISORIO: el cubo gira para que se note que esta vivo. Un modelo animado hace su propio idle
+        // sin Animator gira para que se note que esta vivo
         if (animator == null) transform.Rotate(0, velGiro * Time.deltaTime, 0);
     }
 
@@ -74,7 +68,7 @@ public class Monstruo : MonoBehaviour
         if (datos.monstruo != null && modelo == null)
         {
             modelo = Instantiate(datos.monstruo, transform);
-            animator = modelo.GetComponentInChildren<Animator>(); // null con el cubo, cuando pongan el modelo lo agarra solo
+            animator = modelo.GetComponentInChildren<Animator>(); // null si el prefab no tiene
         }
     }
 
@@ -88,6 +82,9 @@ public class Monstruo : MonoBehaviour
         transform.localPosition = posInicial;
         transform.localRotation = Quaternion.identity; // que arranque mirando para donde mira la carta
         transform.localScale = Vector3.zero;
+
+        if (animator != null) animator.Rebind(); // si quedo en la pose de derrota de la ultima vez, que vuelva al idle
+
         StartCoroutine(Escalar(Vector3.one, tiempoAparecer, generacion));
     }
 
@@ -102,7 +99,7 @@ public class Monstruo : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Ataque: mira al rival, avanza hasta cerca y vuelve a su carta. Si el modelo tiene el trigger "Ataque" lo dispara a la vez
+    // Ataque: mira al rival, avanza hasta cerca y vuelve a su carta. Con Animator el ir y volver dura lo que el clip
     public IEnumerator Atacar(Vector3 haciaDonde)
     {
         int g = generacion;
@@ -111,27 +108,39 @@ public class Monstruo : MonoBehaviour
         Vector3 destino = transform.parent.InverseTransformPoint(haciaDonde);
         Quaternion rotAntes = transform.localRotation;
         MirarA(destino);
-        Disparar("Ataque");
+
+        float dur = tiempoAtaque;
+        if (Disparar("Ataque"))
+        {
+            yield return LargoDelClip("Ataque", valor => dur = valor);
+            if (g != generacion) yield break;
+        }
 
         Vector3 medio = Vector3.Lerp(posInicial, destino, 0.6f); // no llega hasta el otro, se frena un poco antes
 
-        yield return Mover(posInicial, medio, 0.5f, g);
-        yield return Mover(medio, posInicial, 0.4f, g);
+        yield return Mover(posInicial, medio, dur * 0.55f, g);
+        yield return Mover(medio, posInicial, dur * 0.45f, g);
         if (g != generacion) yield break;
 
         transform.localRotation = rotAntes;
         quieto = true;
     }
 
-    // Victoria: trigger "Victoria" si existe. PROVISORIO: el cubo late y brilla
+    // Victoria: brilla lo que dure el clip. Sin Animator ademas late y gira
     public IEnumerator Festejar()
     {
         int g = generacion;
         quieto = false;
-        Disparar("Victoria");
         luz.enabled = true;
 
-        for (float t = 0; t < 1.2f; t += Time.deltaTime)
+        float dur = 1.2f;
+        if (Disparar("Victoria"))
+        {
+            yield return LargoDelClip("Victoria", valor => dur = valor);
+            if (g != generacion) yield break;
+        }
+
+        for (float t = 0; t < dur; t += Time.deltaTime)
         {
             if (g != generacion) yield break;
 
@@ -153,8 +162,8 @@ public class Monstruo : MonoBehaviour
         quieto = true;
     }
 
-    // Derrota: trigger "Derrota" si existe y espera que termine. PROVISORIO: el cubo se achica hasta desaparecer.
-    // Despues de esto el GameManager espera a que saquen la carta de la mesa, aca solo se esconde el modelo
+    // Derrota: espera que termine el clip (sin Animator se achica hasta desaparecer) y se esconde.
+    // Despues el GameManager espera a que saquen la carta de la mesa
     public IEnumerator Morir()
     {
         int g = generacion;
@@ -164,7 +173,10 @@ public class Monstruo : MonoBehaviour
 
         if (Disparar("Derrota"))
         {
-            yield return new WaitForSeconds(tiempoDerrota);
+            float dur = tiempoDerrota;
+            yield return LargoDelClip("Derrota", valor => dur = valor);
+            if (g != generacion) yield break;
+            yield return new WaitForSeconds(dur);
         }
         else
         {
@@ -186,10 +198,10 @@ public class Monstruo : MonoBehaviour
         if (dir.sqrMagnitude > 0.0001f) transform.localRotation = Quaternion.LookRotation(dir, Vector3.up);
     }
 
-    // Dispara un trigger del Animator del modelo. Devuelve false si no hay Animator o no tiene ese trigger
+    // Dispara un trigger del Animator. Devuelve false si no hay Animator, esta escondido o no tiene ese trigger
     private bool Disparar(string trigger)
     {
-        if (animator == null) return false;
+        if (animator == null || !animator.isActiveAndEnabled) return false;
 
         foreach (var p in animator.parameters)
         {
@@ -200,6 +212,23 @@ public class Monstruo : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // Despues de disparar un trigger el Animator tarda un par de frames en cambiar de estado, recien ahi se sabe cuanto dura el clip.
+    // Si en 10 frames no llego al estado deja el tiempo por defecto
+    private IEnumerator LargoDelClip(string estado, System.Action<float> listo)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            yield return null;
+
+            var info = animator.GetCurrentAnimatorStateInfo(0);
+            if (info.IsName(estado))
+            {
+                if (info.length > 0.05f) listo(info.length);
+                yield break;
+            }
+        }
     }
 
     private IEnumerator Escalar(Vector3 hasta, float dur, int g)

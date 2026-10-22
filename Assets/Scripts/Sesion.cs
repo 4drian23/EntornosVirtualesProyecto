@@ -1,5 +1,3 @@
-using UnityEngine;
-
 // Guarda lo q eligio el jugador en el menu. Es static asi no se pierde al cambiar de escena.
 public static class Sesion
 {

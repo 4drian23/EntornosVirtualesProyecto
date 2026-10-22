@@ -111,3 +111,7 @@ InitTestScene*.unity*
 # Unity Version Control (Plastic), usamos GitHub
 /.plastic/
 ignore.conf
+
+# Vuforia los genera al hacer la build y los tendria que borrar solo
+/Assets/VuforiaLicense.cs*
+/Assets/Resources/alpha.shader*
